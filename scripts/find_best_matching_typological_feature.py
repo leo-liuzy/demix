@@ -123,13 +123,16 @@ def main(eps=EPS):
             print(f"demix_posterior: {demix_posterior}")
             print()
         # Different divergence metric leads to different best distance metric, so plot it for different divergence metric
-        # plt.title(f"Best distance metric by {divergence_metric} divergence")
-        # plt.bar(distance_metric2langs.keys(), [len(v) for v in distance_metric2langs.values()])
-        # plt.xlabel("Name of distance metric (in lang2vec)")
-        # plt.ylabel("No. of times seelcted as the best matching metric")
-        # plt.savefig(f"{args.unseen_langs_dir}/best_distance_metric_stats_by_{divergence_metric}.pdf", format="pdf")
+        plt.clf()
+        plt.title(f"Best distance metric by {divergence_metric} divergence")
+        plt.bar(distance_metric2langs.keys(), [len(v) for v in distance_metric2langs.values()])
+        plt.xlabel("Name of distance metric (in lang2vec)")
+        plt.ylabel("No. of times seelcted as the best matching metric")
+        plt.savefig(f"{args.unseen_langs_dir}/best_distance_metric_stats_by_{divergence_metric}.pdf", format="pdf")
+        plt.show()
 
         # also have a scatter plot
+        plt.clf()
         lang2hitmiss = pd.DataFrame(lang2hitmiss)
         lang2hitmiss = lang2hitmiss.transpose()
         # print(lang2hitmiss)
@@ -144,15 +147,10 @@ def main(eps=EPS):
         plt.xlabel("Name of distance metric (in lang2vec)")
         plt.ylabel("Name of unseen language")
         plt.savefig(f"{args.unseen_langs_dir}/best_distance_metric_heatmap_by_{divergence_metric}.pdf", format="pdf")
+        plt.show()
 
     df = pd.DataFrame(results, columns=header)
     df.to_csv(f"{args.unseen_langs_dir}/typological_search_results.tsv", sep="\t")
-    
-
-
-
-
-
 
 if __name__ == "__main__":
     main()
