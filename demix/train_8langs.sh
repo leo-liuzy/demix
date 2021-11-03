@@ -22,7 +22,7 @@ domains=en_XX,fr_XX,zh_CN,ru_RU,ja_XX,id_ID,ro_RO,de_DE;
 # validation datasets for each domain
 valid_subset=valid_en_XX,valid_fr_XX,valid_zh_CN,valid_ru_RU,valid_ja_XX,valid_id_ID,valid_ro_RO,valid_de_DE;
 # name of wandb project to track model output (at wandb.ai)
-WANDB_PROJECT=gpt3_experiments;
+WANDB_PROJECT=domain_token_gpt3_small_experiments;
 
 
 TOKENS_PER_SAMPLE=1024;
@@ -110,6 +110,7 @@ fi;
 if [[ $EXPERIMENT == *"demix"* ]]; then
      srun --label python fairseq_cli/train.py     $DATA_PATH \
           --task multidomain_language_modeling \
+          --multidomain-sampling-alpha 0.7 \
           --sample-break-mode none \
           --log-format simple  \
           --log-interval $LOG_INTERVAL    \
@@ -150,6 +151,7 @@ if [[ $EXPERIMENT == *"demix"* ]]; then
           --sync-type manual \
           --untie-parameters feedforward \
           --data-parallel-groups "${DATA_PARALLEL_GROUPS}" \
+          --seed 1 \
           --all-gather-list-size 32000;
 elif [[ $EXPERIMENT == *"unbalanced"* ]]; then
      srun --label python fairseq_cli/train.py     $DATA_PATH \

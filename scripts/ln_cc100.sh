@@ -16,7 +16,7 @@ do
     mkdir -p $target_shard_dir
     ln -sf $shard_subdir/dict.txt $target_shard_dir/dict.txt
     # echo $target_shard_dir
-    for lang_code in en_XX fr_XX zh_CN ru_RU ja_XX id_ID ro_RO de_DE  # ${shard_subdir}/*/
+    for lang_code in gl_ES # nl_XX fy_NL ko_KR my_MM es_XX gl_ES pl_PL be_BY # en_XX fr_XX zh_CN ru_RU ja_XX id_ID ro_RO de_DE  # ${shard_subdir}/*/
     do
         # lang_dir=${lang_dir%*/} 
         lang_dir=$shard_subdir/$lang_code

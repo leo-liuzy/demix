@@ -14,7 +14,7 @@ estimate=$6
 precomputed_prior=$7
 # Ensemble type, one of "simple_average","cached_prior", "updating_prior", "uniform_prior"
 ensemble_type=$8
-
+echo $data_path
 if [[ $estimate == *"estimate"* ]]; then
 	echo "estimating probabilities..."
 	target_eval_split=valid_${target_domain};

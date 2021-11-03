@@ -59,6 +59,10 @@ def evaluate(models, sample, device, gen_timer, scorer, bpe_toks, output_word_pr
             sys.exit(1)
         ensemble_weighted_average = True
         ensemble_average = None
+    elif ensemble_type == "uniform_prior":
+        prior = torch.ones(8).float() / 8 # TODO(Leo): this is a magic number specific to this project
+        ensemble_weighted_average = True
+        ensemble_average = None
     elif ensemble_type == "updating_prior":
         ensemble_weighted_average = True
         ensemble_average = None
