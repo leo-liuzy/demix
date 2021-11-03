@@ -60,6 +60,7 @@ def main(eps=EPS):
     # fmt: on
     args = parser.parse_args()
     print(args)
+    from pdb import set_trace; set_trace()
     assert os.path.exists(args.unseen_langs_dir)
     assert len(args.seen_languages) > 0 and ',' in args.seen_languages
     seen_langs = sorted(args.seen_languages.split(','))
@@ -122,16 +123,16 @@ def main(eps=EPS):
             print(f"demix_posterior: {demix_posterior}")
             print()
         # Different divergence metric leads to different best distance metric, so plot it for different divergence metric
-        plt.title(f"Best distance metric by {divergence_metric} divergence")
-        plt.bar(distance_metric2langs.keys(), [len(v) for v in distance_metric2langs.values()])
-        plt.xlabel("Name of distance metric (in lang2vec)")
-        plt.ylabel("No. of times seelcted as the best matching metric")
-        plt.savefig(f"{args.unseen_langs_dir}/best_distance_metric_stats_by_{divergence_metric}.pdf", format="pdf")
+        # plt.title(f"Best distance metric by {divergence_metric} divergence")
+        # plt.bar(distance_metric2langs.keys(), [len(v) for v in distance_metric2langs.values()])
+        # plt.xlabel("Name of distance metric (in lang2vec)")
+        # plt.ylabel("No. of times seelcted as the best matching metric")
+        # plt.savefig(f"{args.unseen_langs_dir}/best_distance_metric_stats_by_{divergence_metric}.pdf", format="pdf")
 
         # also have a scatter plot
         lang2hitmiss = pd.DataFrame(lang2hitmiss)
         lang2hitmiss = lang2hitmiss.transpose()
-        print(lang2hitmiss)
+        # print(lang2hitmiss)
         lang2hitmiss.columns = TYPOLOGICAL_DISTANCE_METRICS
         plt.title(f"Best distance metric by {divergence_metric} divergence")
         heatmap = plt.imshow(lang2hitmiss)

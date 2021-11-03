@@ -5,7 +5,7 @@
 #     DATA_BIN="${DATA_BIN}:${DATA_DIR}/shard${i}";
 # done
 # echo $DATA_BIN
-export SERIALIZATION_DIR="/private/home/zeyuliu/proj/demix/8langs/demix_8_GPUs_transformer_lm_gpt3_small_8langs_all_shard"
+export SERIALIZATION_DIR="8langs/demix_8_GPUs_transformer_lm_gpt3_small_8langs_all_shard"
 # set NUM_EVALUATION_GPUS equal to the number of experts you'd like to ensemble.
 export NEW_DATA_BIN=$DATA_BIN
 export NUM_EVALUATION_GPUS=8;
