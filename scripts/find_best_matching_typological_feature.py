@@ -87,7 +87,7 @@ def main(eps=EPS):
         divergence_func = divergence_func_from_name(divergence_metric)
         distance_metric2langs = {m: [] for m in TYPOLOGICAL_DISTANCE_METRICS}
         lang2hitmiss = {}
-        for i, target_lang_fb in enumerate(target_langs):
+        for i, target_lang_fb in enumerate(target_langs[:2]):
             print(f"Target language: {target_lang_fb}")
             assert '_' in target_lang_fb  # fb lang code has a '_' in it
             target_lang = LETTER_CODES[target_lang_fb.split('_')[0]]
@@ -131,10 +131,11 @@ def main(eps=EPS):
         # also have a scatter plot
         lang2hitmiss = pd.DataFrame(lang2hitmiss)
         lang2hitmiss = lang2hitmiss.transpose()
+        print(lang2hitmiss)
         lang2hitmiss.columns = TYPOLOGICAL_DISTANCE_METRICS
         plt.title(f"Best distance metric by {divergence_metric} divergence")
         heatmap = plt.imshow(lang2hitmiss)
-        plt.xticks(range(len(lang2hitmiss.columns.values)), lang2hitmiss.columns.values)
+        plt.xticks(range(len(lang2hitmiss.columns.values)), lang2hitmiss.columns.values, rotation='vertical')
         plt.yticks(range(len(lang2hitmiss.index)), lang2hitmiss.index)
         cbar = plt.colorbar(mappable=heatmap, ticks=[0, 1], orientation='vertical')  
         # vertically oriented colorbar
