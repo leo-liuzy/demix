@@ -87,6 +87,10 @@ def main(cfg: FairseqConfig) -> None:
     assert cfg.criterion, "Please specify criterion to train a model"
 
     # Build model and criterion
+    # if torch.distributed.get_rank() == 0:
+    #     from fairseq.pdb import set_trace; set_trace()
+    # else:
+    #     from time import sleep; sleep(10000)
     model = task.build_model(cfg.model)
     criterion = task.build_criterion(cfg.criterion)
     logger.info(model)
@@ -116,7 +120,10 @@ def main(cfg: FairseqConfig) -> None:
 
         logger.info(f"Data Parallel Groups: {groups}")
         process_group = process_groups[torch.distributed.get_rank(torch.distributed.group.WORLD)]
-        
+        # if torch.distributed.get_rank() == 0:
+        #     from fairseq.pdb import set_trace; set_trace()
+        # else:
+        #     from time import sleep; sleep(10000)
         if getattr(cfg.model, "untie_parameters"):
             for x, p in model.named_parameters():
 

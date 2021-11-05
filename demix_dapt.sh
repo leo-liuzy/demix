@@ -18,8 +18,94 @@ do
     echo "Language: ${new_domain}"
     mkdir -p ${new_lang_dir}/${new_domain}
     export DEV_POSTERIOR_OUTPUT="${new_lang_dir}/${new_domain}/dev_posteriors.jsonl"
-    bash demix/mix_eval_lm.sh $NUM_EVALUATION_GPUS $NEW_DATA_BIN  ${SERIALIZATION_DIR}/checkpoint_last-rank-0.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-1.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-2.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-3.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-4.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-5.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-6.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-7.pt $new_domain $DEV_POSTERIOR_OUTPUT estimate > ${new_lang_dir}/${new_domain}/estimate_eval_len1024.log 2>&1
-    export POSTERIOR=$(tail -n 1 $DEV_POSTERIOR_OUTPUT | jq -rc '.exp_avg_posterior | join(",")')
-    python scripts/find_best_expert_for_unseen_langs.py $POSTERIOR
+    export POSTERIOR="1,0,0,0,0,0,0,0"
+    export ensemble_type=cached_prior
+    bash demix/mix_eval_lm.sh $NUM_EVALUATION_GPUS $NEW_DATA_BIN  ${SERIALIZATION_DIR}/checkpoint_last-rank-0.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-1.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-2.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-3.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-4.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-5.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-6.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-7.pt $new_domain $DEV_POSTERIOR_OUTPUT eval $POSTERIOR $ensemble_type > ${new_lang_dir}/${new_domain}/cached_prior_eval_len1024.de_DE_Expert.log 2>&1
+    # export POSTERIOR=$(tail -n 1 $DEV_POSTERIOR_OUTPUT | jq -rc '.exp_avg_posterior | join(",")')
+    # python scripts/find_best_expert_for_unseen_langs.py $POSTERIOR
+done
+
+for new_domain in nl_XX fy_NL ko_KR my_MM es_XX gl_ES pl_PL be_BY
+do  
+    echo "Language: ${new_domain}"
+    mkdir -p ${new_lang_dir}/${new_domain}
+    export DEV_POSTERIOR_OUTPUT="${new_lang_dir}/${new_domain}/dev_posteriors.jsonl"
+    export POSTERIOR="0,1,0,0,0,0,0,0"
+    export ensemble_type=cached_prior
+    bash demix/mix_eval_lm.sh $NUM_EVALUATION_GPUS $NEW_DATA_BIN  ${SERIALIZATION_DIR}/checkpoint_last-rank-0.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-1.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-2.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-3.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-4.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-5.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-6.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-7.pt $new_domain $DEV_POSTERIOR_OUTPUT eval $POSTERIOR $ensemble_type > ${new_lang_dir}/${new_domain}/cached_prior_eval_len1024.en_XX_Expert.log 2>&1
+    # export POSTERIOR=$(tail -n 1 $DEV_POSTERIOR_OUTPUT | jq -rc '.exp_avg_posterior | join(",")')
+    # python scripts/find_best_expert_for_unseen_langs.py $POSTERIOR
 done
 # set NUM_EVALUATION_GPUS equal to the number of experts you'd like to ensemble.
+
+for new_domain in nl_XX fy_NL ko_KR my_MM es_XX gl_ES pl_PL be_BY
+do  
+    echo "Language: ${new_domain}"
+    mkdir -p ${new_lang_dir}/${new_domain}
+    export DEV_POSTERIOR_OUTPUT="${new_lang_dir}/${new_domain}/dev_posteriors.jsonl"
+    export POSTERIOR="0,0,1,0,0,0,0,0"
+    export ensemble_type=cached_prior
+    bash demix/mix_eval_lm.sh $NUM_EVALUATION_GPUS $NEW_DATA_BIN  ${SERIALIZATION_DIR}/checkpoint_last-rank-0.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-1.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-2.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-3.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-4.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-5.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-6.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-7.pt $new_domain $DEV_POSTERIOR_OUTPUT eval $POSTERIOR $ensemble_type > ${new_lang_dir}/${new_domain}/cached_prior_eval_len1024.fr_XX_Expert.log 2>&1
+    # export POSTERIOR=$(tail -n 1 $DEV_POSTERIOR_OUTPUT | jq -rc '.exp_avg_posterior | join(",")')
+    # python scripts/find_best_expert_for_unseen_langs.py $POSTERIOR
+done
+
+for new_domain in nl_XX fy_NL ko_KR my_MM es_XX gl_ES pl_PL be_BY
+do  
+    echo "Language: ${new_domain}"
+    mkdir -p ${new_lang_dir}/${new_domain}
+    export DEV_POSTERIOR_OUTPUT="${new_lang_dir}/${new_domain}/dev_posteriors.jsonl"
+    export POSTERIOR="0,0,0,1,0,0,0,0"
+    export ensemble_type=cached_prior
+    bash demix/mix_eval_lm.sh $NUM_EVALUATION_GPUS $NEW_DATA_BIN  ${SERIALIZATION_DIR}/checkpoint_last-rank-0.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-1.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-2.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-3.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-4.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-5.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-6.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-7.pt $new_domain $DEV_POSTERIOR_OUTPUT eval $POSTERIOR $ensemble_type > ${new_lang_dir}/${new_domain}/cached_prior_eval_len1024.id_ID_Expert.log 2>&1
+    # export POSTERIOR=$(tail -n 1 $DEV_POSTERIOR_OUTPUT | jq -rc '.exp_avg_posterior | join(",")')
+    # python scripts/find_best_expert_for_unseen_langs.py $POSTERIOR
+done
+
+for new_domain in nl_XX fy_NL ko_KR my_MM es_XX gl_ES pl_PL be_BY
+do  
+    echo "Language: ${new_domain}"
+    mkdir -p ${new_lang_dir}/${new_domain}
+    export DEV_POSTERIOR_OUTPUT="${new_lang_dir}/${new_domain}/dev_posteriors.jsonl"
+    export POSTERIOR="0,0,0,0,1,0,0,0"
+    export ensemble_type=cached_prior
+    bash demix/mix_eval_lm.sh $NUM_EVALUATION_GPUS $NEW_DATA_BIN  ${SERIALIZATION_DIR}/checkpoint_last-rank-0.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-1.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-2.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-3.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-4.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-5.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-6.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-7.pt $new_domain $DEV_POSTERIOR_OUTPUT eval $POSTERIOR $ensemble_type > ${new_lang_dir}/${new_domain}/cached_prior_eval_len1024.ja_XX_Expert.log 2>&1
+    # export POSTERIOR=$(tail -n 1 $DEV_POSTERIOR_OUTPUT | jq -rc '.exp_avg_posterior | join(",")')
+    # python scripts/find_best_expert_for_unseen_langs.py $POSTERIOR
+done
+
+for new_domain in nl_XX fy_NL ko_KR my_MM es_XX gl_ES pl_PL be_BY
+do  
+    echo "Language: ${new_domain}"
+    mkdir -p ${new_lang_dir}/${new_domain}
+    export DEV_POSTERIOR_OUTPUT="${new_lang_dir}/${new_domain}/dev_posteriors.jsonl"
+    export POSTERIOR="0,0,0,0,0,1,0,0"
+    export ensemble_type=cached_prior
+    bash demix/mix_eval_lm.sh $NUM_EVALUATION_GPUS $NEW_DATA_BIN  ${SERIALIZATION_DIR}/checkpoint_last-rank-0.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-1.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-2.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-3.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-4.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-5.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-6.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-7.pt $new_domain $DEV_POSTERIOR_OUTPUT eval $POSTERIOR $ensemble_type > ${new_lang_dir}/${new_domain}/cached_prior_eval_len1024.ro_RO_Expert.log 2>&1
+    # export POSTERIOR=$(tail -n 1 $DEV_POSTERIOR_OUTPUT | jq -rc '.exp_avg_posterior | join(",")')
+    # python scripts/find_best_expert_for_unseen_langs.py $POSTERIOR
+done
+
+for new_domain in nl_XX fy_NL ko_KR my_MM es_XX gl_ES pl_PL be_BY
+do  
+    echo "Language: ${new_domain}"
+    mkdir -p ${new_lang_dir}/${new_domain}
+    export DEV_POSTERIOR_OUTPUT="${new_lang_dir}/${new_domain}/dev_posteriors.jsonl"
+    export POSTERIOR="0,0,0,0,0,0,1,0"
+    export ensemble_type=cached_prior
+    bash demix/mix_eval_lm.sh $NUM_EVALUATION_GPUS $NEW_DATA_BIN  ${SERIALIZATION_DIR}/checkpoint_last-rank-0.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-1.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-2.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-3.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-4.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-5.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-6.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-7.pt $new_domain $DEV_POSTERIOR_OUTPUT eval $POSTERIOR $ensemble_type > ${new_lang_dir}/${new_domain}/cached_prior_eval_len1024.ru_RU_Expert.log 2>&1
+    # export POSTERIOR=$(tail -n 1 $DEV_POSTERIOR_OUTPUT | jq -rc '.exp_avg_posterior | join(",")')
+    # python scripts/find_best_expert_for_unseen_langs.py $POSTERIOR
+done
+
+for new_domain in nl_XX fy_NL ko_KR my_MM es_XX gl_ES pl_PL be_BY
+do  
+    echo "Language: ${new_domain}"
+    mkdir -p ${new_lang_dir}/${new_domain}
+    export DEV_POSTERIOR_OUTPUT="${new_lang_dir}/${new_domain}/dev_posteriors.jsonl"
+    export POSTERIOR="0,0,0,0,0,0,0,1"
+    export ensemble_type=cached_prior
+    bash demix/mix_eval_lm.sh $NUM_EVALUATION_GPUS $NEW_DATA_BIN  ${SERIALIZATION_DIR}/checkpoint_last-rank-0.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-1.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-2.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-3.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-4.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-5.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-6.pt:${SERIALIZATION_DIR}/checkpoint_last-rank-7.pt $new_domain $DEV_POSTERIOR_OUTPUT eval $POSTERIOR $ensemble_type > ${new_lang_dir}/${new_domain}/cached_prior_eval_len1024.zh_CN_Expert.log 2>&1
+    # export POSTERIOR=$(tail -n 1 $DEV_POSTERIOR_OUTPUT | jq -rc '.exp_avg_posterior | join(",")')
+    # python scripts/find_best_expert_for_unseen_langs.py $POSTERIOR
+done

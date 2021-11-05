@@ -1,0 +1,412 @@
+wandb_version: 1
+
+_name:
+  desc: null
+  value: null
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.12.5
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.8.12
+    start_time: 1636090014
+    t:
+      1:
+      - 1
+      3:
+      - 13
+      4: 3.8.12
+      5: 0.12.5
+      8:
+      - 5
+bmuf:
+  desc: null
+  value:
+    _name: null
+    average_sync: false
+    block_lr: 1.0
+    block_momentum: 0.875
+    distributed_world_size: 8
+    global_sync_iter: 50
+    use_nbm: false
+    warmup_iterations: 500
+bpe:
+  desc: null
+  value: null
+checkpoint:
+  desc: null
+  value:
+    _name: null
+    best_checkpoint_metric: loss
+    checkpoint_shard_count: 1
+    checkpoint_suffix: -rank-0
+    distributed_rank: 0
+    finetune_from_model: null
+    keep_best_checkpoints: -1
+    keep_interval_updates: 1
+    keep_last_epochs: -1
+    load_checkpoint_on_all_dp_ranks: false
+    maximize_best_checkpoint_metric: false
+    model_parallel_size: 1
+    no_best_checkpoints: false
+    no_epoch_checkpoints: true
+    no_last_checkpoints: false
+    no_save: false
+    no_save_optimizer_state: false
+    no_save_optimizer_state_on_training_finished: false
+    optimizer_overrides: '{}'
+    patience: -1
+    reset_dataloader: false
+    reset_lr_scheduler: false
+    reset_meters: false
+    reset_optimizer: false
+    restore_file: checkpoint_last.pt
+    save_dir: /private/home/zeyuliu/proj/demix/8langs/demix_8_GPUs_transformer_lm_gpt3_small_moe_transformer_8langs_all_shard
+    save_interval: 1
+    save_interval_updates: 6000
+    symlink_best_and_last_checkpoints: false
+common:
+  desc: null
+  value:
+    _name: null
+    all_gather_list_size: 32000
+    azureml_logging: false
+    bf16: false
+    cpu: false
+    empty_cache_freq: 0
+    fp16: true
+    fp16_init_scale: 128
+    fp16_no_flatten_grads: false
+    fp16_scale_tolerance: 0.0
+    fp16_scale_window: null
+    log_format: simple
+    log_interval: 50
+    memory_efficient_bf16: false
+    memory_efficient_fp16: true
+    min_loss_scale: 0.0001
+    model_parallel_size: 1
+    no_progress_bar: false
+    profile: false
+    quantization_config_path: null
+    reset_logging: false
+    seed: 1
+    suppress_crashes: false
+    tensorboard_logdir: null
+    threshold_loss_scale: null
+    tpu: false
+    user_dir: null
+    wandb_project: moe_transformer_gpt3_small_experiments
+common_eval:
+  desc: null
+  value:
+    _name: null
+    add_adapters: null
+    add_domain_token: false
+    ensemble_type: null
+    eval_only: false
+    is_moe: false
+    max_samples: null
+    model_overrides: '{}'
+    partial_load: false
+    path: null
+    paths: null
+    post_process: null
+    precomputed_prior: null
+    quiet: false
+    replay: false
+    results_path: null
+    use_expert: null
+criterion:
+  desc: null
+  value:
+    _name: desynchronized_cross_entropy
+    sentence_avg: false
+dataset:
+  desc: null
+  value:
+    _name: null
+    batch_size: 2
+    batch_size_valid: 2
+    curriculum: 0
+    data_buffer_size: 10
+    dataset_impl: null
+    disable_validation: false
+    fixed_validation_seed: null
+    gen_subset: test
+    max_tokens: null
+    max_tokens_valid: null
+    num_shards: 1
+    num_workers: 2
+    required_batch_size_multiple: 1
+    required_seq_len_multiple: 1
+    shard_id: 0
+    skip_invalid_size_inputs_valid_test: true
+    target_domain: test
+    target_eval: test
+    train_subset: train
+    undomain_eval: test
+    undomain_replay: test
+    valid_subset: valid_en_XX,valid_fr_XX,valid_zh_CN,valid_ru_RU,valid_ja_XX,valid_id_ID,valid_ro_RO,valid_de_DE
+    validate_after_updates: 0
+    validate_interval: 1
+    validate_interval_updates: 3000
+distributed_training:
+  desc: null
+  value:
+    _name: null
+    broadcast_buffers: false
+    bucket_cap_mb: 25
+    ddp_backend: no_c10d
+    device_id: 0
+    distributed_backend: nccl
+    distributed_init_method: tcp://learnfair1478:12345
+    distributed_no_spawn: true
+    distributed_port: 12345
+    distributed_rank: 0
+    distributed_world_size: 8
+    distributed_wrapper: DDP
+    fast_stat_sync: false
+    find_unused_parameters: false
+    fix_batches_to_gpus: false
+    heartbeat_timeout: -1
+    localsgd_frequency: 3
+    nprocs_per_node: 8
+    pipeline_balance: null
+    pipeline_checkpoint: never
+    pipeline_chunks: 0
+    pipeline_decoder_balance: null
+    pipeline_decoder_devices: null
+    pipeline_devices: null
+    pipeline_encoder_balance: null
+    pipeline_encoder_devices: null
+    pipeline_model_parallel: false
+    slowmo_algorithm: LocalSGD
+    slowmo_momentum: null
+    tpu: false
+    zero_sharding: none
+dynamic_eval_lm:
+  desc: null
+  value:
+    _name: null
+    context_window: 0
+    output_word_probs: false
+    output_word_stats: false
+    softmax_batch: 9223372036854775807
+eval_lm:
+  desc: null
+  value:
+    _name: null
+    context_window: 0
+    output_word_probs: false
+    output_word_stats: false
+    softmax_batch: 9223372036854775807
+generation:
+  desc: null
+  value:
+    _name: null
+    beam: 5
+    constraints: null
+    decoding_format: null
+    diverse_beam_groups: -1
+    diverse_beam_strength: 0.5
+    diversity_rate: -1.0
+    iter_decode_eos_penalty: 0.0
+    iter_decode_force_max_iter: false
+    iter_decode_max_iter: 10
+    iter_decode_with_beam: 1
+    iter_decode_with_external_reranker: false
+    lenpen: 1.0
+    lm_path: null
+    lm_weight: 0.0
+    match_source_len: false
+    max_len_a: 0.0
+    max_len_b: 200
+    min_len: 1
+    nbest: 1
+    no_beamable_mm: false
+    no_early_stop: false
+    no_repeat_ngram_size: 0
+    no_seed_provided: false
+    prefix_size: 0
+    print_alignment: null
+    print_step: false
+    replace_unk: null
+    retain_dropout: false
+    retain_dropout_modules: null
+    retain_iter_history: false
+    sacrebleu: false
+    sampling: false
+    sampling_topk: -1
+    sampling_topp: -1.0
+    score_reference: false
+    temperature: 1.0
+    unkpen: 0.0
+    unnormalized: false
+interactive:
+  desc: null
+  value:
+    _name: null
+    buffer_size: 0
+    input: '-'
+lr_scheduler:
+  desc: null
+  value:
+    _name: polynomial_decay
+    end_learning_rate: 0.0
+    force_anneal: null
+    lr:
+    - 0.0005
+    power: 1.0
+    total_num_update: 300000.0
+    warmup_updates: 24000
+model:
+  desc: null
+  value:
+    _name: transformer_lm_gpt3_small
+    activation_dropout: 0.0
+    activation_fn: gelu
+    adaptation: false
+    adaptive_input: false
+    adaptive_input_cutoff: null
+    adaptive_input_factor: 4.0
+    adaptive_softmax_cutoff: null
+    adaptive_softmax_dropout: 0.0
+    adaptive_softmax_factor: 4.0
+    add_bos_token: false
+    add_expert_ffn: false
+    add_expert_layers: false
+    alternate_decoder_ffn_embed_dim: 0
+    attention_dropout: 0.0
+    batch_size: 2
+    batch_size_valid: 2
+    char_embedder_highway_layers: 2
+    character_embedding_dim: 4
+    character_embeddings: false
+    character_filters: '[(1, 64), (2, 128), (3, 192), (4, 256), (5, 256), (6, 256),
+      (7, 256)]'
+    checkpoint_activations: false
+    data_parallel_groups: 0 1 2 3 4 5 6 7
+    decoder_attention_heads: 12
+    decoder_embed_dim: 768
+    decoder_ffn_embed_dim: 3072
+    decoder_input_dim: 768
+    decoder_layerdrop: 0.0
+    decoder_layers: 12
+    decoder_layers_to_keep: null
+    decoder_learned_pos: true
+    decoder_normalize_before: true
+    decoder_output_dim: 768
+    desynchronize: true
+    distributed_rank: 0
+    dropout: 0.0
+    fp16: true
+    fp16_no_flatten_grads: false
+    layernorm_embedding: false
+    max_target_positions: 1024
+    memory_efficient_fp16: true
+    moe_alpha: null
+    moe_domain_expert: null
+    moe_expert_count: 0
+    moe_expert_decoder_ffn_dim: null
+    moe_expert_ffn_dim: null
+    moe_expert_type: null
+    moe_freq: 0
+    moe_gating_use_fp32: false
+    moe_hierarchical_expert: null
+    moe_normalize_gate_prob_before_dropping: false
+    moe_num_domains: null
+    moe_num_experts_per_domain: null
+    moe_num_experts_per_gpu: null
+    moe_num_shared_experts: null
+    moe_second_expert_policy: sampling
+    moe_top1_expert: false
+    no_decoder_final_norm: false
+    no_scale_embedding: false
+    no_token_positional_embeddings: false
+    offload_activations: false
+    quant_noise_pq: 0.0
+    quant_noise_pq_block_size: 8
+    quant_noise_scalar: 0.0
+    relu_dropout: 0.0
+    share_decoder_input_output_embed: true
+    sync_type: manual
+    tie_adaptive_proj: false
+    tie_adaptive_weights: false
+    tokens_per_sample: 1024
+    tpu: false
+    untie_parameters: transformer
+    use_experts_during_training: null
+    world_size: 8
+optimization:
+  desc: null
+  value:
+    _name: null
+    clip_norm: 0.1
+    lr:
+    - 0.0005
+    max_epoch: 0
+    max_update: 300000
+    sentence_avg: false
+    stop_min_lr: -1.0
+    stop_time_hours: 0.0
+    update_freq:
+    - 8
+    use_bmuf: false
+optimizer:
+  desc: null
+  value:
+    _name: adam
+    adam_betas: (0.9, 0.95)
+    adam_eps: 1.0e-07
+    lr:
+    - 0.0005
+    tpu: false
+    use_old_adam: false
+    weight_decay: 0.1
+scoring:
+  desc: null
+  value:
+    _name: bleu
+    eos: 2
+    pad: 1
+    unk: 3
+task:
+  desc: null
+  value:
+    _name: multidomain_language_modeling
+    add_domain_token: false
+    batch_size: 2
+    batch_size_valid: 2
+    data: /private/home/zeyuliu/proj/demix/data-bin/cc100/shard0:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard1:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard2:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard3:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard4:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard5:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard6:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard7:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard8:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard9:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard10:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard11:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard12:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard13:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard14:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard15:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard16:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard17:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard18:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard19:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard20:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard21:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard22:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard23:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard24:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard25:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard26:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard27:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard28:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard29:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard30:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard31:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard32:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard33:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard34:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard35:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard36:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard37:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard38:/private/home/zeyuliu/proj/demix/data-bin/cc100/shard39
+    data_buffer_size: 10
+    dataset_impl: null
+    domain_parallel: true
+    eval_domains: en_XX,fr_XX,zh_CN,ru_RU,ja_XX,id_ID,ro_RO,de_DE
+    force_domain_token: null
+    future_target: false
+    gpu_mappings: null
+    max_source_positions: null
+    max_target_positions: null
+    multidomain_sampling_alpha: 0.7
+    original_domains: ''
+    output_dictionary_size: -1
+    pad_to_fixed_bsz: false
+    pad_to_fixed_length: false
+    past_target: false
+    recluster_data: false
+    sample_break_mode: none
+    seed: 1
+    self_target: false
+    shorten_data_split_list: ''
+    shorten_method: none
+    tokens_per_sample: 1024
+    tpu: false
+    train_domains: en_XX,fr_XX,zh_CN,ru_RU,ja_XX,id_ID,ro_RO,de_DE
+    train_subset: train
+    unbalanced: false
+    valid_subset: valid_en_XX,valid_fr_XX,valid_zh_CN,valid_ru_RU,valid_ja_XX,valid_id_ID,valid_ro_RO,valid_de_DE
+tokenizer:
+  desc: null
+  value: null

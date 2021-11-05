@@ -152,5 +152,6 @@ def main(eps=EPS):
     df = pd.DataFrame(results, columns=header)
     df.to_csv(f"{args.unseen_langs_dir}/typological_search_results.tsv", sep="\t")
 
+
 if __name__ == "__main__":
     main()
